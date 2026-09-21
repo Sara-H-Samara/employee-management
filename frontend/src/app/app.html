@@ -1,0 +1,39 @@
+<div style="max-width: 550px; margin: 50px auto; font-family: sans-serif;">
+  <h1>👔 Employee Management (OOP Demo)</h1>
+
+  <h3>Average Salary: ${{ averageSalary.toFixed(2) }}</h3>
+
+  <hr />
+
+  <h3>Add Employee</h3>
+  <select [(ngModel)]="newType">
+    <option value="Developer">Developer</option>
+    <option value="Manager">Manager</option>
+  </select>
+  <br /><br />
+  <input [(ngModel)]="newName" placeholder="Name" />
+  <br /><br />
+  <input [(ngModel)]="newBaseSalary" type="number" placeholder="Base Salary" />
+  <br /><br />
+  <input
+    [(ngModel)]="newExtra"
+    type="number"
+    [placeholder]="newType === 'Developer' ? 'Bonus' : 'Team Bonus'"
+  />
+  <br /><br />
+  <button (click)="addEmployee()">Add Employee</button>
+
+  <hr />
+
+  <h3>Employees</h3>
+  <ul style="list-style: none; padding: 0;">
+    <li *ngFor="let e of employees" style="margin-top: 10px; display: flex; justify-content: space-between; align-items: center;">
+      <span>
+        <strong>{{ e.name }}</strong> ({{ e.type }}) —
+        Base: ${{ e.baseSalary.toFixed(2) }} →
+        <strong>Total: ${{ e.calculatedSalary.toFixed(2) }}</strong>
+      </span>
+      <button (click)="deleteEmployee(e.id)">✕</button>
+    </li>
+  </ul>
+</div>
